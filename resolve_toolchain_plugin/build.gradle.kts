@@ -14,10 +14,16 @@ group = "io.github.jaehwa-noh"
 version = "1.0.0-alpha01"
 
 gradlePlugin {
+    vcsUrl = "https://github.com/Jaehwa-Noh/Resolve-Toolchain-Plugin"
+    website = "https://github.com/Jaehwa-Noh/Resolve-Toolchain-Plugin"
+
     plugins {
         create("myToolchainPlugin") {
             id = "io.github.jaehwa-noh.resolve-toolchain-plugin"
             implementationClass = "starlightlab.jaehwa.resolve_toolchain_plugin.ResolveToolchainPlugin"
+            displayName = "Resolve Toolchain Plugin"
+            description = "For Java toolchain auto-provisioning plugin"
+            tags = listOf("toolchains", "auto-provision")
         }
     }
 
@@ -25,14 +31,9 @@ gradlePlugin {
         create("myToolchainPluginPresetting") {
             id = "io.github.jaehwa-noh.resolve-toolchain-plugin-presetting"
             implementationClass = "starlightlab.jaehwa.resolve_toolchain_plugin.ResolveToolchainPluginPresetting"
-        }
-    }
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("myToolchainPlugin") {
-            from(components["java"])
+            displayName = "Resolve Toolchain Plugin Presetting"
+            description = "For Java toolchain auto-provisioning plugin and presetting"
+            tags = listOf("toolchains", "auto-provision")
         }
     }
 }
