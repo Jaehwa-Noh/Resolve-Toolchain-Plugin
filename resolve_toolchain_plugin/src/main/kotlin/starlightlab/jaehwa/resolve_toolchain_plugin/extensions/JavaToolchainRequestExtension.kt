@@ -1,8 +1,7 @@
 package starlightlab.jaehwa.resolve_toolchain_plugin.extensions
 
-import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.jvm.toolchain.JavaToolchainRequest
-import org.gradle.platform.Architecture
+import starlightlab.jaehwa.resolve_toolchain_plugin.urls.allUrlsMap
 
 internal fun JavaToolchainRequest.getUrl(): String? {
     val javaToolchainSpec = this.javaToolchainSpec
@@ -13,29 +12,9 @@ internal fun JavaToolchainRequest.getUrl(): String? {
     val javaVersion = javaToolchainSpec.languageVersion.toInt()
 
     val key = "$vendor-$os-${buildPlatform.architecture}-$javaVersion"
+    val url = allUrlsMap[key]
 
-    println(key)
+    if (url == null) println("Your JDK request($key) doesn't managed by this plugin.")
 
-    return urlMap[key]
-}
-
-/**
- * Vendor, OS, Architecture, JDK version -> URL
- */
-internal val urlMap = buildMap {
-    // AZUL
-    // note: Linux
-    put(
-        "$AZUL-$LINUX-${Architecture.X86_64}-$JDK_25",
-        "https://cdn.azul.com/zulu/bin/zulu25.32.21-ca-jdk25.0.2-linux_x64.tar.gz"
-    )
-    put(
-        "$AZUL-$LINUX-${Architecture.AARCH64}-$JDK_25",
-        "https://cdn.azul.com/zulu/bin/zulu25.32.21-ca-jdk25.0.2-linux_aarch64.tar.gz"
-    )
-    // note: Mac
-    put(
-        "$AZUL-$MAC-${Architecture.AARCH64}-$JDK_25",
-        "https://cdn.azul.com/zulu/bin/zulu25.32.21-ca-jdk25.0.2-macosx_aarch64.tar.gz"
-    )
+    return url
 }
