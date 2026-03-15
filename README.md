@@ -27,14 +27,41 @@ dependencyResolutionManagement {
 
 ### 1. Easy way
 ```kotlin
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal() 
+    }
+}
+
+// Add this `plugins` in `settings.gradle.kts`
 plugins {
     id("io.github.jaehwa-noh.resolve-toolchain-plugin-presetting").version("1.0.0-alpha01")
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
 }
 ```
 
 
 ### 2. Manual
 ```kotlin
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+// Add this `plugins` and `toolchainManagement` in `settings.gradle.kts`
 plugins {
     id("io.github.jaehwa-noh.resolve-toolchain-plugin").version("1.0.0-alpha01")
 }
@@ -48,6 +75,15 @@ toolchainManagement {
                 )
             }
         }
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
     }
 }
 ```
