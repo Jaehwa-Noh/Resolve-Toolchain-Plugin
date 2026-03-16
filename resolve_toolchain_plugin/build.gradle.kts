@@ -22,7 +22,7 @@ gradlePlugin {
             id = "io.github.jaehwa-noh.resolve-toolchain-plugin"
             implementationClass = "starlightlab.jaehwa.resolve_toolchain_plugin.ResolveToolchainPlugin"
             displayName = "Resolve Toolchain Plugin"
-            description = "For Java toolchain auto-provisioning plugin"
+            description = "For Java toolchain auto-provisioning plugin. JDK will be downlaoded from the Official download URL"
             tags = listOf("toolchains", "auto-provision")
         }
     }
@@ -32,7 +32,7 @@ gradlePlugin {
             id = "io.github.jaehwa-noh.resolve-toolchain-plugin-presetting"
             implementationClass = "starlightlab.jaehwa.resolve_toolchain_plugin.ResolveToolchainPluginPresetting"
             displayName = "Resolve Toolchain Plugin Presetting"
-            description = "For Java toolchain auto-provisioning plugin and presetting"
+            description = "For Java toolchain auto-provisioning plugin and presetting. JDK will be downlaoded from the Official download URL"
             tags = listOf("toolchains", "auto-provision")
         }
     }

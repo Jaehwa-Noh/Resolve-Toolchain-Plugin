@@ -27,5 +27,7 @@ internal fun Property<JavaLanguageVersion>.toInt() = when(this.get()) {
     JavaLanguageVersion.of(25) -> JDK_25
     JavaLanguageVersion.of(21) -> JDK_21
     JavaLanguageVersion.of(17) -> JDK_17
+    JavaLanguageVersion.of(11) -> JDK_11
+    JavaLanguageVersion.of(8) -> JDK_8
     else -> JDK_UNKNOWN
 }
