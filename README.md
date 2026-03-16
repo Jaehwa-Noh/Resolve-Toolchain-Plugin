@@ -1,8 +1,27 @@
 # Reslove Toolchain Plugin
-
 > [!Note]
 > Require Gradle version 7.6 and above!  
 > In Gradle version 7.6 and above, Gradle provides a way to define Java toolchain auto-provisioning logic in plugins.
+
+## Why I made this plugin
+Another toolchain resolver plugins use middleware to get endpoint download URL.  
+That architecture has security issues, such as easily change the endpoint URL without consumer notices.
+No need to update plugin just change the middleware API.   
+
+Then, this plugin uses the HARD CORDING endpoint URL from official site.
+Consumer easily check that endpoint URL in this repository files and the only way to modify URL is plugin version change.
+
+## Supported JDKs
+|        | Azul      |
+|--------|-----------|
+ | JDK 8  | &#x2705;  |
+| JDK 11 | &#x2705;  |
+| JDK 17 |  &#x2705; |
+| JDK 21 | &#x2705; |
+| JDK 25 | &#x2705; |
+
+Another JDKs next release version will be treat.
+
 
 ## How to use
 in `settings.gradle.kts`
@@ -24,8 +43,8 @@ dependencyResolutionManagement {
     }
 }
 ```
-
-### 1. Easy way
+### Set up
+#### • Easy way
 ```kotlin
 pluginManagement {
     repositories {
@@ -50,8 +69,9 @@ dependencyResolutionManagement {
 }
 ```
 
+done.
 
-### 2. Manual
+#### • Manually way
 ```kotlin
 pluginManagement {
     repositories {
@@ -84,6 +104,44 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+    }
+}
+```
+done.
+
+### Apply (Set toolchain)
+in module's `build.gradle.kts`
+```gradle
+kotlin {
+    compilerOptions {
+        jvmToolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
+}
+```
+
+or 
+```gradle
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+```
+
+
+### Example
+```gradle
+kotlin {
+    compilerOptions {
+        jvmToolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+            vendor = JvmVendorSpec.IBM  
+            // You can set JDK Vendor but this plugin only can download from `Supported JDK section` vendor.
+            // Otherwise, Azul(Default) JDK will be downloaded
+            // So that this request downloads Azul JDK 21.
+        }
     }
 }
 ```
