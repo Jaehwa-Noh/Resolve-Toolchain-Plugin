@@ -145,3 +145,6 @@ kotlin {
     }
 }
 ```
+
+### Contributing
+Open to contribute to anyone, fork and create a PR.
