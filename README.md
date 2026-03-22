@@ -12,13 +12,23 @@ Then, this plugin uses the HARD CORDING endpoint URL from official site.
 Consumer easily check that endpoint URL in this repository files and the only way to modify URL is plugin version change.
 
 ## Supported JDKs
-|        | Azul      |
+
+### JDK versions
+|        | Azul Zulu |
 |--------|-----------|
  | JDK 8  | &#x2705;  |
 | JDK 11 | &#x2705;  |
 | JDK 17 |  &#x2705; |
 | JDK 21 | &#x2705; |
 | JDK 25 | &#x2705; |
+
+
+### JDK information
+|    JDK      |                    Official site                         |                                 License                             | 
+|-------------|----------------------------------------------------------|---------------------------------------------------------------------|
+| Azul Zulu   | [site](https://www.azul.com/downloads/?package=jdk#zulu) | [license](https://www.azul.com/products/core/openjdk-terms-of-use/) |
+
+
 
 Another JDKs next release version will be treat.
 
